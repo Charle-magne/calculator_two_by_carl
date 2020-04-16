@@ -3,66 +3,95 @@ import java.util.Scanner;
 
 public class App
 {
-    private static double num1;
-    private static double num2;
-    private static String operand;
-    private static double result;
+    public static double num1;
+    public static double num2;
+    public static double result;
 
-    public static double addition(double num1, double num2){
-        result = num1+num2;
+    public static void calcResult() {
+
+        boolean keepTrying = true;
+        System.out.println("Welcome to the calculator.");
+
+        do {
+
+            System.out.println("Start calculating (1) or Exit (9)?");
+            double choice = getNumber();
+
+            if (choice == 1) {
+
+                String operator;
+
+                System.out.println("Enter the first number: ");
+                num1 = getNumber();
+                System.out.println("Enter the second number: ");
+                num2 = getNumber();
+
+                Scanner op = new Scanner(System.in);
+                System.out.println("And just how do you want to calculate this mess? (+-*/)");
+
+                operator = op.next();
+
+                if (operator.equals("+")) {
+                    System.out.println("The result is " + add(num1, num2) + ".");
+                } else if (operator.equals("-")) {
+                    System.out.println("The result is " + subtract(num1, num2) + ".");
+                } else if (operator.equals("*")) {
+                    System.out.println("The result is " + multiply(num1, num2) + ".");
+                } else if (operator.equals("/")) {
+                    System.out.println("The result is " + divide(num1, num2) + ".");
+                } else {
+                    System.out.println("Not a valid operator. Try again.");
+                }
+            } else if (choice == 9) {
+                System.out.println("Bye.");
+                keepTrying = false;
+            } else {
+                System.out.println("Please use the proper numbers.");
+            }
+        } while (keepTrying);
+    }
+
+    public static double add(double num1, double num2) {
+        result = (num1 + num2);
         return result;
     }
 
-    public static double subtraction(double num1, double num2){
-        result = num1-num2;
+    public static double subtract(double num3, double num4) {
+        result = (num3 - num4);
         return result;
     }
 
-    public static double multiplication(double num1, double num2){
-        result = num1*num2;
+    public static double multiply(double num1, double num2) {
+        result = (num1 * num2);
         return result;
     }
 
-    public static double division(double num1, double num2){
-        result = num1/num2;
+    public static double divide(double num1, double num2) {
+        result = (num1 / num2);
         return result;
     }
 
-    public static double userInput() {
-        Scanner input = new Scanner(System.in);
-        return input.nextDouble();
+    static String getStringFromUser() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
-    public static double calcResult(){
-
-        System.out.println("This is the Calculator II. Be in awe.");
-
-        System.out.println("First value:");
-        num1 = userInput();
-        System.out.println("Next value:");
-        num2 = userInput();
-
-        System.out.println("Pick operand (+ - * /):");
-        Scanner op = new Scanner(System.in);
-        operand = op.next();
-
-        if (operand.equals("+")) {
-            addition(num1, num2);
-        } else if (operand.equals("-")) {
-            subtraction(num1, num2);
-        } else if (operand.equals("*")) {
-            multiplication(num1, num2);
-        } else if (operand.equals("/")) {
-            division(num1, num2);
+    static double getNumber() {   // This part I had help with.
+        boolean valid = false;
+        double number = 0;
+        while (!valid) {
+            try {
+                number = Double.parseDouble(getStringFromUser().trim().replace(',', '.'));
+                valid = true;
+            } catch (NumberFormatException e) {
+                System.out.println("That's not a valid number. Try again.");
+            }
         }
-        else {
-            System.out.println("Not a valid operand.");
-        }
-        return result;
+        return number;
     }
 
     public static void main( String[] args )
     {
-        System.out.println("The result is " + calcResult() + ".");
+        calcResult();
     }
 }

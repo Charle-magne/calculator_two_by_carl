@@ -16,7 +16,7 @@ public class AppTest
         double expected = 2;
 
         //Act
-        double actualNumber = App.addition(num1, num2);
+        double actualNumber = App.add(num1, num2);
 
         //Assert
         assertEquals(expected, actualNumber, 0);
@@ -31,7 +31,7 @@ public class AppTest
         double expected = 2;
 
         //Act
-        double actualNumber = App.subtraction(num1, num2);
+        double actualNumber = App.subtract(num1, num2);
 
         //Assert
         assertEquals(expected, actualNumber, 0);
@@ -46,7 +46,7 @@ public class AppTest
         double expected = 6;
 
         //Act
-        double actualNumber = App.multiplication(num1, num2);
+        double actualNumber = App.multiply(num1, num2);
 
         //Assert
         assertEquals(expected, actualNumber, 0);
@@ -61,7 +61,7 @@ public class AppTest
         double expected = 3;
 
         //Act
-        double actualNumber = App.division(num1, num2);
+        double actualNumber = App.divide(num1, num2);
 
         //Assert
         assertEquals(expected, actualNumber, 0);
